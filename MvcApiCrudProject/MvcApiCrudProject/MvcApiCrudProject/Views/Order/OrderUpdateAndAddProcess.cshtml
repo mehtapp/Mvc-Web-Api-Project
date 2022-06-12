@@ -1,0 +1,46 @@
+﻿@model MvcApiCrudProject.Models.MvcOrderModel
+
+@{
+    ViewBag.Title = "OrderUpdateAndAddProcess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.OrderId)
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        <h5>Sipariş İşlem Sayfası</h5>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            Müşteri No
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            Ürün No
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <br />
+                <input type="submit" value="Kaydet" class="btn btn-danger" />
+                @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn text-danger border-danger" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

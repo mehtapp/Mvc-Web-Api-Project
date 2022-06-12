@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MvcApiCrudProject.Models.MvcCategoryModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    @Html.ActionLink("Kategori Ekle", "CategoryAddandUpdate", null, new {@class="btn btn-danger"})<br /><br />
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Kategori Tablosu
+    </div>
+    <div class="card-body">
+
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Kategori ID</th>
+                    <th>Kategori Adı</th>
+                    <th>Güncelle / Sil</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Kategori ID</th>
+                    <th>Kategori Adı</th>
+                    <th>Güncelle / Sil</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryName)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Güncelle", "CategoryAddandUpdate", new { id = item.CategoryId }, new { @class="btn btn-danger"})
+                                @Html.ActionLink("Sil", "CategoryDelete", new { id = item.CategoryId }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+</div>

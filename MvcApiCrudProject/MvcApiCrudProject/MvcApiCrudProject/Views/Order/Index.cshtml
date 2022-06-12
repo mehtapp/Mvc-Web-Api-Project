@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MvcApiCrudProject.Models.MvcOrderModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@Html.ActionLink("Sipariş Ekle", "OrderUpdateAndAddProcess", null, new { @class = "btn btn-danger" })
+<br />
+<br />
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Sipariş Tablosu
+    </div>
+    <div class="card-body">
+
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    
+                    <th>Müşteri No</th>
+                    <th>Ürün No</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Müşteri No</th>
+                    <th>Ürün No</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    
+                   
+                    @foreach (var item in Model)
+                    {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.CustomerId)</td>
+
+                    <td>@Html.DisplayFor(modelItem => item.ProductId)</td>
+
+                    <td></td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "OrderUpdateAndAddProcess", new { id = item.OrderId }, new { @class = "btn btn-danger" })
+
+                        @Html.ActionLink("Sil", "OrderDelete", new { id = item.OrderId }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+                }
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
